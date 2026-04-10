@@ -61,6 +61,11 @@ function readAuth() {
     return { idInstance, apiToken };
 }
 
+function applyCredentials() {
+    const { idInstance, apiToken } = readAuth();
+    api.setCredentials(idInstance, apiToken);
+}
+
 function render(data) {
     dom.output.value = JSON.stringify(data, null, 2);
 }
@@ -90,17 +95,17 @@ async function withUiLock(fn) {
 
 // ===== ACTIONS =====
 async function handleGetSettings() {
-    const { idInstance, apiToken } = readAuth();
-    return await api.getSettings(idInstance, apiToken);
+    applyCredentials();
+    return await api.getSettings();
 }
 
 async function handleGetState() {
-    const { idInstance, apiToken } = readAuth();
-    return await api.getStateInstance(idInstance, apiToken);
+    applyCredentials();
+    return await api.getStateInstance();
 }
 
 async function handleSendMessage() {
-    const { idInstance, apiToken } = readAuth();
+    applyCredentials();
 
     const chatId = dom.chatId.value.trim();
     const message = dom.message.value.trim();
@@ -109,11 +114,11 @@ async function handleSendMessage() {
         throw new Error("Не заполнены chatId или message");
     }
 
-    return await api.sendMessage(idInstance, apiToken, chatId, message);
+    return await api.sendMessage(chatId, message);
 }
 
 async function handleSendFile() {
-    const { idInstance, apiToken } = readAuth();
+    applyCredentials();
 
     const chatId = dom.chatId.value.trim();
     const fileUrl = dom.fileUrl.value.trim();
@@ -122,7 +127,7 @@ async function handleSendFile() {
         throw new Error("Не заполнены chatId или fileUrl");
     }
 
-    return await api.sendFileByUrl(idInstance, apiToken, chatId, fileUrl);
+    return await api.sendFileByUrl(chatId, fileUrl);
 }
 
 // ===== EVENTS =====
