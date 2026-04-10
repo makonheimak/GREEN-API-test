@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GREEN API Test</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>GREEN API Tester</h1>
+
+    <!-- Подключение -->
+    <div class="block">
+        <h2>Connection</h2>
+
+        <input id="idInstance" type="text" placeholder="idInstance">
+        <input id="apiToken" type="text" placeholder="ApiTokenInstance">
+    </div>
+
+    <!-- Методы -->
+    <div class="block">
+        <h2>Methods</h2>
+
+        <button id="getSettingsBtn">getSettings</button>
+        <button id="getStateBtn">getStateInstance</button>
+    </div>
+
+    <!-- Отправка сообщения -->
+    <div class="block">
+        <h2>Send Message</h2>
+
+        <input id="chatId" type="text" placeholder="chatId (e.g. 79999999999@c.us)">
+        <input id="message" type="text" placeholder="Message">
+
+        <button id="sendMessageBtn">sendMessage</button>
+    </div>
+
+    <!-- Отправка файла -->
+    <div class="block">
+        <h2>Send File</h2>
+
+        <input id="fileUrl" type="text" placeholder="File URL">
+
+        <button id="sendFileBtn">sendFileByUrl</button>
+    </div>
+
+    <!-- Результат -->
+    <div class="block">
+        <h2>Response</h2>
+
+        <textarea id="response" readonly rows="15"></textarea>
+    </div>
+
+</div>
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>
